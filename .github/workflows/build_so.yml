@@ -16,7 +16,7 @@ jobs:
 
       - name: Compile .so
         run: |
-          arm-linux-gnueabihf-gcc -shared -fPIC -DDEVALIAS -o oled_hijack.so oled_hijack_so.c -Wl,--hash-style=both -fno-exceptions -fno-asynchronous-unwind-tables -static-libgcc
+          arm-linux-gnueabihf-gcc -shared -fPIC -DDEVALIAS -o oled_hijack.so oled_hijack_so.c -Wl,--hash-style=both -fno-exceptions -fno-asynchronous-unwind-tables -nostdlib -nodefaultlib -lc
 
       - name: Upload .so Artifact
         uses: actions/upload-artifact@v4
