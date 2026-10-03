@@ -1,0 +1,25 @@
+name: Build Shared Library .so
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install ARM GCC
+        run: |
+          sudo apt update
+          sudo apt install -y gcc-arm-linux-gnueabihf
+
+      - name: Compile .so
+        run: |
+          arm-linux-gnueabihf-gcc -shared -fPIC -o oled_hijack.so oled_hijack.c -ldl
+
+      - name: Upload .so Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oled_hijack_so
+          path: oled_hijack.so
