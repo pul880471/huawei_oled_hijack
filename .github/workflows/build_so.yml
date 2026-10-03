@@ -16,7 +16,7 @@ jobs:
 
       - name: Compile .so
         run: |
-          arm-linux-gnueabihf-gcc -shared -fPIC -o oled_hijack.so oled_hijack.c -ldl
+          arm-linux-gnueabihf-gcc -shared -fPIC -o oled_hijack.so *.c -ld
 
       - name: Upload .so Artifact
         uses: actions/upload-artifact@v4
